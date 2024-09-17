@@ -1,4 +1,4 @@
-import { NOTEBOOKS_METADATA_FILE_NAME, NOTEBOOKS_STATUS_FILE_NAME } from './constants';
+import { AIDEMOS_METADATA_FILE_NAME, NOTEBOOKS_STATUS_FILE_NAME } from './constants';
 import { INotebookMetadata } from './notebook-metadata';
 import { INotebookStatus } from './notebook-status';
 
@@ -31,7 +31,7 @@ class NotebooksService {
     if (!this._notebooksMap) {
       const { BASE_URL } = import.meta.env;
 
-      const notebooksMetadataMap = (await fetch(`${BASE_URL}${NOTEBOOKS_METADATA_FILE_NAME}`).then((response) =>
+      const notebooksMetadataMap = (await fetch(`${BASE_URL}${AIDEMOS_METADATA_FILE_NAME}`).then((response) =>
         response.json()
       )) as Record<string, INotebookMetadata>;
 

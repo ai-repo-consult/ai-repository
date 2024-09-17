@@ -1,5 +1,6 @@
 import { CATEGORIES, TASKS_VALUES } from './notebook-tags.js';
-import { INDUSTRY, TECHNOLOGY_VALUES } from './notebook-tags.js';
+import { INDUSTRY_CATEGORY, LIBRARIES_TECHNOLOGY_VALUES } from '@/shared/aidemos-tags';
+
 
 type ObjectValues<T> = T[keyof T];
 
@@ -38,10 +39,9 @@ export interface IAiDemoMetadata {
     binder: string | null;
   };
   tags: {
-    industry: ObjectValues<typeof INDUSTRY>[]; // categories
-    technology: typeof TECHNOLOGY_VALUES;      // tasks
-    functionality: string[];                   // libraries
-    type: string[];                            // New to format
+    categories: ObjectValues<typeof INDUSTRY_CATEGORY>[]; // industry
+    tasks: typeof LIBRARIES_TECHNOLOGY_VALUES;            // technology
+    libraries: string[];                                  // functionality
     other: string[];
   };
 }

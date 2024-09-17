@@ -3,7 +3,7 @@
 import { existsSync, mkdirSync, writeFileSync } from 'fs';
 import { join } from 'path';
 
-import { NOTEBOOKS_METADATA_FILE_NAME } from '../shared/constants.js';
+import { AIDEMOS_METADATA_FILE_NAME } from '../shared/constants.js';
 import { NotebookMetadataValidationError } from './notebook-metadata-validator.js';
 
 /**
@@ -38,7 +38,7 @@ export async function generateNotebooksMetadataFile(path) {
     mkdirSync(path, { recursive: true });
   }
 
-  writeFileSync(join(path, NOTEBOOKS_METADATA_FILE_NAME), JSON.stringify(notebooksMetadataMap, null, 2), {
+  writeFileSync(join(path, AIDEMOS_METADATA_FILE_NAME), JSON.stringify(notebooksMetadataMap, null, 2), {
     flag: 'w',
   });
 

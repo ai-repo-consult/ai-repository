@@ -5,7 +5,7 @@ import { join, resolve } from 'path';
 
 import { generateNotebooksMetadataFile } from '../notebook-metadata/generate-notebooks-map.js';
 import { createBuildChecksumFile } from './build-checksum.js';
-import { NOTEBOOKS_METADATA_FILE_NAME, NOTEBOOKS_STATUS_FILE_NAME } from './constants.js';
+import { AIDEMOS_METADATA_FILE_NAME, NOTEBOOKS_STATUS_FILE_NAME } from './constants.js';
 import { fetchNotebooksStatusFile } from './fetch-notebooks-status.js';
 
 /**
@@ -31,10 +31,10 @@ export const collectNotebooksFilesPlugin = () => {
       }
     },
     async configureServer(devServer) {
-      const notebooksMapFileExists = existsSync(join(distPath, NOTEBOOKS_METADATA_FILE_NAME));
+      const notebooksMapFileExists = existsSync(join(distPath, AIDEMOS_METADATA_FILE_NAME));
       if (notebooksMapFileExists) {
         console.info(
-          `"${NOTEBOOKS_METADATA_FILE_NAME}" file already exists and is served from "${distPath}" dist directory.`
+          `"${AIDEMOS_METADATA_FILE_NAME}" file already exists and is served from "${distPath}" dist directory.`
         );
       } else {
         await generateNotebooksMetadataFile(distPath);
@@ -55,7 +55,7 @@ export const collectNotebooksFilesPlugin = () => {
         }
       }
 
-      devServer.middlewares.use(...getFileMiddleware(NOTEBOOKS_METADATA_FILE_NAME, config.base, distPath));
+      devServer.middlewares.use(...getFileMiddleware(AIDEMOS_METADATA_FILE_NAME, config.base, distPath));
       devServer.middlewares.use(...getFileMiddleware(NOTEBOOKS_STATUS_FILE_NAME, config.base, distPath));
     },
   };
