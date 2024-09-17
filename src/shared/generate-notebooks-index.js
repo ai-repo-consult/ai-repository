@@ -7,6 +7,8 @@ import { fileURLToPath } from 'node:url';
 const NOTEBOOKS_DIR = join(dirname(fileURLToPath(import.meta.url)), '..', '..', '..', 'notebooks');
 const INDEX_FILE_NAME = 'README.md';
 
+console.log("the file generate-Notebooks-Index")
+
 /** @typedef {import('./notebook-metadata.ts').INotebookMetadata} INotebookMetadata */
 
 /**
@@ -64,4 +66,6 @@ export async function generateNotebooksIndex(notebooksMetadataMapFilePath) {
   const indexContent = formatToIndexMarkdown(categoryToNotebooksMetadataMap);
 
   await fs.promises.writeFile(join(NOTEBOOKS_DIR, INDEX_FILE_NAME), indexContent, { flag: 'w' });
+
+
 }
