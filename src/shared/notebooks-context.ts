@@ -1,11 +1,11 @@
 import { createContext, Dispatch, SetStateAction, useState } from 'react';
 
-import { INotebookMetadata } from './notebook-metadata';
-// import { IAiDemoMetadata } from './notebook-metadata'
+// import { INotebookMetadata } from './notebook-metadata';
+import { IAiDemoMetadata } from './notebook-metadata'
 import { SORT_OPTIONS, SortValues } from './notebooks.service';
 
 export interface INotebooksSelector {
-  selectedTags: INotebookMetadata['tags'];
+  selectedTags: IAiDemoMetadata['tags'];
   setSelectedTags: Dispatch<SetStateAction<INotebooksSelector['selectedTags']>>;
   searchValue: string;
   setSearchValue: Dispatch<SetStateAction<INotebooksSelector['searchValue']>>;
@@ -16,7 +16,7 @@ export interface INotebooksSelector {
   setPage: Dispatch<SetStateAction<INotebooksSelector['page']>>;
 }
 
-export const defaultSelectedTags: INotebookMetadata['tags'] = {
+export const defaultSelectedTags: IAiDemoMetadata['tags'] = {
   categories: [],
   tasks: [],
   libraries: [],

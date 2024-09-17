@@ -7,8 +7,8 @@ import { FilterSection } from '@/components/shared/FilterSection/FilterSection';
 import { Search } from '@/components/shared/Search/Search';
 import { ITabItem, Tabs } from '@/components/shared/Tabs/Tabs';
 import { analytics } from '@/shared/analytics/analytics';
-import { INotebookMetadata } from '@/shared/notebook-metadata';
-import { CATEGORIES, LIBRARIES, LIBRARIES_VALUES, TASKS, TASKS_VALUES } from '@/shared/notebook-tags';
+import { IAiDemoMetadata } from '@/shared/notebook-metadata';
+import { INDUSTRY_CATEGORY, LIBRARIES_TECHNOLOGY, LIBRARIES_TECHNOLOGY_VALUES, TYPE_TASKS, TYPE_TASKS_VALUES } from '@/shared/aidemos-tags';
 import { notebooksService } from '@/shared/notebooks.service';
 import { NotebooksContext } from '@/shared/notebooks-context';
 
@@ -21,31 +21,29 @@ interface IFilterGroup<T extends string = string> {
   tags: string[];
 }
 
-type FilterGroupKey = keyof INotebookMetadata['tags'];
+type FilterGroupKey = keyof IAiDemoMetadata['tags'];
 
 const OTHER_TAGS = await notebooksService.getOtherTags();
 
 const filterGroups: IFilterGroup<FilterGroupKey>[] = [
   {
-    title: 'Categories',
+    title: 'Industry categories',
     group: 'categories',
-    tags: Object.values(CATEGORIES),
+    tags: Object.values(INDUSTRY_CATEGORY),
   },
-  { title: 'AI Tasks', group: 'tasks', tags: TASKS_VALUES },
-  { title: 'Ecosystem', group: 'libraries', tags: LIBRARIES_VALUES },
+  { title: 'AI types', group: 'tasks', tags: TYPE_TASKS_VALUES },
+  { title: 'Library techonology', group: 'libraries', tags: LIBRARIES_TECHNOLOGY_VALUES },
 ];
 
-const tasksSectionsTitlesMap: Record<keyof typeof TASKS, string> = {
-  MULTIMODAL: 'Multimodal',
-  CV: 'Computer Vision',
-  NLP: 'Natural Language Processing',
-  AUDIO: 'Audio',
-  OTHER: 'Other',
+const tasksSectionsTitlesMap: Record<keyof typeof TYPE_TASKS, string> = {
+  AI_TYPE: 'AI Type',
+  USE_CASE_FUNCTIONALITY: 'Use case functionality',
 };
 
-const librariesSectionsTitlesMap: Record<keyof typeof LIBRARIES, string> = {
-  OPENVINO: 'OpenVINO',
-  OTHER: 'Other Tools',
+const librariesSectionsTitlesMap: Record<keyof typeof LIBRARIES_TECHNOLOGY, string> = {
+  AI_FRAMEWORKS: 'AI Frameworks',
+  AI_TECHNIQUES: 'AI Techniques',
+  COMPLEXITY_LEVEL: 'Complexity level',
 };
 
 function getTagsFilterSections<T extends Record<string, Record<string, string>>>({
@@ -59,7 +57,7 @@ function getTagsFilterSections<T extends Record<string, Record<string, string>>>
   group: FilterGroupKey;
   tagsMap: T;
   titlesMap: Record<keyof T, string>;
-  selectedTags: INotebookMetadata['tags'];
+  selectedTags: IAiDemoMetadata['tags'];
   filterTags: (tags: string[]) => string[];
   handleTagClick: (tag: string, group: FilterGroupKey) => void;
 }): JSX.Element[] {
@@ -110,18 +108,18 @@ export const FiltersPanel = (): JSX.Element => {
     }
   };
 
-  const tasksFilterSections = getTagsFilterSections<typeof TASKS>({
+  const tasksFilterSections = getTagsFilterSections<typeof TYPE_TASKS>({
     group: 'tasks',
-    tagsMap: TASKS,
+    tagsMap: TYPE_TASKS,
     titlesMap: tasksSectionsTitlesMap,
     selectedTags,
     filterTags,
     handleTagClick,
   });
 
-  const librariesFilterSections = getTagsFilterSections<typeof LIBRARIES>({
+  const librariesFilterSections = getTagsFilterSections<typeof LIBRARIES_TECHNOLOGY>({
     group: 'libraries',
-    tagsMap: LIBRARIES,
+    tagsMap: LIBRARIES_TECHNOLOGY,
     titlesMap: librariesSectionsTitlesMap,
     selectedTags,
     filterTags,
