@@ -1,6 +1,5 @@
-import { AIDEMOS_METADATA_FILE_NAME, NOTEBOOKS_STATUS_FILE_NAME } from './constants';
+import { AIDEMOS_METADATA_FILE_NAME } from './constants';
 import { INotebookMetadata } from './notebook-metadata';
-import { INotebookStatus } from './notebook-status';
 
 export const SORT_OPTIONS = {
   RECENTLY_ADDED: 'Recently Added',
@@ -19,7 +18,7 @@ interface INotebooksFilters {
   limit: number;
 }
 
-type NotebooksMap = Record<string, INotebookMetadata & { status?: INotebookStatus['status'] }>;
+type NotebooksMap = Record<string, INotebookMetadata>;
 
 export type NotebookItem = NotebooksMap[string];
 
@@ -35,11 +34,7 @@ class NotebooksService {
         response.json()
       )) as Record<string, INotebookMetadata>;
 
-      const notebooksStatusMap = (await fetch(`${BASE_URL}${NOTEBOOKS_STATUS_FILE_NAME}`).then((response) =>
-        response.ok ? response.json() : {}
-      )) as Record<string, INotebookStatus>;
-
-      this._notebooksMap = this._getNotebooksMapWithStatuses(notebooksMetadataMap, notebooksStatusMap);
+      this._notebooksMap = notebooksMetadataMap;
       this._allNotebooksTags = this._getAllNotebooksTags(this._notebooksMap);
     }
     return this._notebooksMap;
@@ -98,24 +93,6 @@ class NotebooksService {
     if (sort === SORT_OPTIONS.NAME_DESCENDING) {
       return (a: INotebookMetadata, b: INotebookMetadata) => b.title.toUpperCase().localeCompare(a.title.toUpperCase());
     }
-  }
-
-  private _getNotebooksMapWithStatuses(
-    metadataMap: Record<string, INotebookMetadata>,
-    statusMap: Record<string, INotebookStatus>
-  ): NotebooksMap {
-    const result = { ...metadataMap } as NotebooksMap;
-    for (const [notebookPath, { status }] of Object.entries(statusMap)) {
-      if (!result[notebookPath]) {
-        console.warn(`Unknown notebook "${notebookPath}" found in status report.`);
-        continue;
-      }
-      if (result[notebookPath].status) {
-        console.warn(`Status of the notebook "${notebookPath}" already exists and will be overrided.`);
-      }
-      result[notebookPath].status = status;
-    }
-    return result;
   }
 
   private _getAllNotebooksTags(notebooksMap: NotebooksMap): string[] {

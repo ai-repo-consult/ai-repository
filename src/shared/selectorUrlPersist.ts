@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 
 import { isEmbedded } from './iframe-detector';
-import { CATEGORIES, LIBRARIES_VALUES, TASKS_VALUES } from './notebook-tags';
+// import { CATEGORIES, LIBRARIES_TECHNOLOGY_VALUES, TYPE_TASKS_VALUES } from './notebook-tags';
+import { INDUSTRY_CATEGORY, LIBRARIES_TECHNOLOGY_VALUES, TYPE_TASKS_VALUES } from './aidemos-tags';
 import { notebooksService } from './notebooks.service';
 import { defaultSelectedTags, INotebooksSelector } from './notebooks-context';
 
@@ -118,9 +119,9 @@ function fromSearchParams(urlSearchParams: URLSearchParams): UrlPersistState | n
     return {
       searchValue: urlSearchParams.get('search') || '',
       selectedTags: {
-        categories: extractTagsValues('categories', Object.values(CATEGORIES)),
-        tasks: extractTagsValues('tasks', TASKS_VALUES),
-        libraries: extractTagsValues('libraries', LIBRARIES_VALUES),
+        categories: extractTagsValues('categories', Object.values(INDUSTRY_CATEGORY)),
+        tasks: extractTagsValues('tasks',  LIBRARIES_TECHNOLOGY_VALUES),
+        libraries: extractTagsValues('libraries', TYPE_TASKS_VALUES),
         other: extractTagsValues('other', OTHER_TAGS),
       },
     };

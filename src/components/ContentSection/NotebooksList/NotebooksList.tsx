@@ -1,6 +1,6 @@
 import './NotebooksList.scss';
 
-import { INotebookMetadata } from '@/shared/notebook-metadata';
+import { IAiDemoMetadata } from '@/shared/notebook-metadata';
 
 import { NotebookCard } from './NotebookCard/NotebookCard';
 
@@ -12,7 +12,7 @@ const EmptyNotebooksList = (): JSX.Element => (
 );
 
 type NotebooksListProps = {
-  items: INotebookMetadata[];
+  items: IAiDemoMetadata[];
 };
 
 export const NotebooksList = ({ items }: NotebooksListProps): JSX.Element => {

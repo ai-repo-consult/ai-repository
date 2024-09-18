@@ -157,7 +157,7 @@ export const FiltersPanel = (): JSX.Element => {
             onTagClick={(tag, group) => handleTagClick(tag, group!)}
           ></FilterSection>
         )}
-        {group === 'categories' && !!filterTags(OTHER_TAGS).length && (
+        {/* {group === 'categories' && !!filterTags(OTHER_TAGS).length && (
           <FilterSection<FilterGroupKey>
             key={`filter-section-other`}
             group="other"
@@ -166,7 +166,7 @@ export const FiltersPanel = (): JSX.Element => {
             selectedTags={selectedTags['other']}
             onTagClick={(tag, group) => handleTagClick(tag, group!)}
           ></FilterSection>
-        )}
+        )} */}
       </>
     ),
   }));

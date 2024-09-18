@@ -5,7 +5,7 @@ import { useContext, useEffect, useState } from 'react';
 import { Pagination } from '@/components/shared/Pagination/Pagination';
 import { isEmbedded } from '@/shared/iframe-detector';
 import { sendScrollMessage } from '@/shared/iframe-message-emitter';
-import { INotebookMetadata } from '@/shared/notebook-metadata';
+import { IAiDemoMetadata } from '@/shared/notebook-metadata';
 import { notebooksService } from '@/shared/notebooks.service';
 import { NotebooksContext } from '@/shared/notebooks-context';
 
@@ -25,7 +25,7 @@ const scrollToTop = () => {
 export const ContentSection = (): JSX.Element => {
   const { selectedTags, searchValue, sort, page, setPage } = useContext(NotebooksContext);
 
-  const [notebooks, setNotebooks] = useState<INotebookMetadata[]>([]);
+  const [notebooks, setNotebooks] = useState<IAiDemoMetadata[]>([]);
   const [filteredNotebooksCount, setFilteredNotebooksCount] = useState<number>(0);
   const [totalNotebooksCount, setTotalNotebooksCount] = useState<number>(0);
 
