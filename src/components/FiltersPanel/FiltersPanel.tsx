@@ -7,7 +7,7 @@ import { FilterSection } from '@/components/shared/FilterSection/FilterSection';
 import { Search } from '@/components/shared/Search/Search';
 import { ITabItem, Tabs } from '@/components/shared/Tabs/Tabs';
 import { analytics } from '@/shared/analytics/analytics';
-import { INotebookMetadata } from '@/shared/notebook-metadata';
+import { IAiDemoMetadata } from '@/shared/notebook-metadata';
 import { INDUSTRY_CATEGORY, LIBRARIES_TECHNOLOGY, LIBRARIES_TECHNOLOGY_VALUES, TYPE_TASKS, TYPE_TASKS_VALUES } from '@/shared/aidemos-tags';
 import { notebooksService } from '@/shared/notebooks.service';
 import { NotebooksContext } from '@/shared/notebooks-context';
@@ -21,7 +21,7 @@ interface IFilterGroup<T extends string = string> {
   tags: string[];
 }
 
-type FilterGroupKey = keyof INotebookMetadata['tags'];
+type FilterGroupKey = keyof IAiDemoMetadata['tags'];
 
 const OTHER_TAGS = await notebooksService.getOtherTags();
 
@@ -57,7 +57,7 @@ function getTagsFilterSections<T extends Record<string, Record<string, string>>>
   group: FilterGroupKey;
   tagsMap: T;
   titlesMap: Record<keyof T, string>;
-  selectedTags: INotebookMetadata['tags'];
+  selectedTags: IAiDemoMetadata['tags'];
   filterTags: (tags: string[]) => string[];
   handleTagClick: (tag: string, group: FilterGroupKey) => void;
 }): JSX.Element[] {
