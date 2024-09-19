@@ -1,5 +1,6 @@
 import { AIDEMOS_METADATA_FILE_NAME } from './constants';
-import { INotebookMetadata } from './notebook-metadata';
+import { IAiDemoMetadata } from './notebook-metadata';
+import { INotebookStatus } from './notebook-status';
 
 export const SORT_OPTIONS = {
   RECENTLY_ADDED: 'Recently Added',
@@ -11,14 +12,15 @@ export const SORT_OPTIONS = {
 export type SortValues = (typeof SORT_OPTIONS)[keyof typeof SORT_OPTIONS];
 
 interface INotebooksFilters {
-  tags: INotebookMetadata['tags'];
+  tags: IAiDemoMetadata['tags'];
   searchValue: string;
   sort: SortValues;
   offset: number;
   limit: number;
 }
+type NotebooksMap = Record<string, IAiDemoMetadata & { status?: INotebookStatus['status'] }>;
 
-type NotebooksMap = Record<string, INotebookMetadata>;
+// type NotebooksMap = Record<string, IAiDemoMetadata>;
 
 export type NotebookItem = NotebooksMap[string];
 
@@ -32,7 +34,7 @@ class NotebooksService {
 
       const notebooksMetadataMap = (await fetch(`${BASE_URL}${AIDEMOS_METADATA_FILE_NAME}`).then((response) =>
         response.json()
-      )) as Record<string, INotebookMetadata>;
+      )) as Record<string, IAiDemoMetadata>;
 
       this._notebooksMap = notebooksMetadataMap;
       this._allNotebooksTags = this._getAllNotebooksTags(this._notebooksMap);
@@ -46,7 +48,7 @@ class NotebooksService {
     sort,
     offset,
     limit,
-  }: INotebooksFilters): Promise<[INotebookMetadata[], number, number]> {
+  }: INotebooksFilters): Promise<[IAiDemoMetadata[], number, number]> {
     const notebooks = Object.values(await this._getNotebooksMap());
     const filteredNotebooks = notebooks
       .filter((notebook) => {
@@ -78,20 +80,20 @@ class NotebooksService {
     return this._allNotebooksTags;
   }
 
-  private _getCompareFn(sort: SortValues): Parameters<Array<INotebookMetadata>['sort']>[0] {
+  private _getCompareFn(sort: SortValues): Parameters<Array<IAiDemoMetadata>['sort']>[0] {
     if (sort === SORT_OPTIONS.RECENTLY_ADDED) {
-      return (a: INotebookMetadata, b: INotebookMetadata) =>
+      return (a: IAiDemoMetadata, b: IAiDemoMetadata) =>
         new Date(b.createdDate).getTime() - new Date(a.createdDate).getTime();
     }
     if (sort === SORT_OPTIONS.RECENTLY_UPDATED) {
-      return (a: INotebookMetadata, b: INotebookMetadata) =>
+      return (a: IAiDemoMetadata, b: IAiDemoMetadata) =>
         new Date(b.modifiedDate).getTime() - new Date(a.modifiedDate).getTime();
     }
     if (sort === SORT_OPTIONS.NAME_ASCENDING) {
-      return (a: INotebookMetadata, b: INotebookMetadata) => a.title.toUpperCase().localeCompare(b.title.toUpperCase());
+      return (a: IAiDemoMetadata, b: IAiDemoMetadata) => a.title.toUpperCase().localeCompare(b.title.toUpperCase());
     }
     if (sort === SORT_OPTIONS.NAME_DESCENDING) {
-      return (a: INotebookMetadata, b: INotebookMetadata) => b.title.toUpperCase().localeCompare(a.title.toUpperCase());
+      return (a: IAiDemoMetadata, b: IAiDemoMetadata) => b.title.toUpperCase().localeCompare(a.title.toUpperCase());
     }
   }
 

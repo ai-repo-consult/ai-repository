@@ -5,7 +5,7 @@ import { execSync } from 'child_process';
 import { docsNotebooks } from './docs-notebooks.js';
 import { NotebookContentReader } from './notebook-content-reader.js';
 
-/** @typedef {import('./notebook-content-reader.js').INotebookMetadata} INotebookMetadata */
+/** @typedef {import('./notebook-content-reader.js').IAiDemoMetadata} IAiDemoMetadata */
 
 export class NotebookMetadataCollector extends NotebookContentReader {
   /**
@@ -109,7 +109,7 @@ export class NotebookMetadataCollector extends NotebookContentReader {
 
   /**
    * @private
-   * @returns {INotebookMetadata['tags']['libraries']}
+   * @returns {IAiDemoMetadata['tags']['libraries']}
    */
   _getLibrariesTags() {
     const codeCells = this._getCodeCells();
@@ -125,7 +125,7 @@ export class NotebookMetadataCollector extends NotebookContentReader {
 
   /**
    * @private
-   * @returns {INotebookMetadata['tags']}
+   * @returns {IAiDemoMetadata['tags']}
    */
   _getTags() {
     const tags = this._getMetadataFromNotebookFile('tags');
@@ -143,7 +143,7 @@ export class NotebookMetadataCollector extends NotebookContentReader {
    * Collects and returns new metadata object
    *
    * @public
-   * @returns {INotebookMetadata}
+   * @returns {IAiDemoMetadata}
    */
   getMetadata() {
     return {

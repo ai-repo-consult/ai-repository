@@ -13,9 +13,9 @@ import { NotebookMetadataValidationError } from './notebook-metadata-validator.j
  * @returns {Promise<void>}
  */
 export async function generateNotebooksMetadataFile(path) {
-  /** @typedef {import("./notebook-metadata-collector.js").INotebookMetadata} INotebookMetadata */
+  /** @typedef {import("./notebook-metadata-collector.js").IAiDemoMetadata} IAiDemoMetadata */
 
-  /** @type {Record<string, INotebookMetadata>} */
+  /** @type {Record<string, IAiDemoMetadata>} */
   const notebooksMetadataMap = {};
 
   console.info(`Creating notebooks map file...`);

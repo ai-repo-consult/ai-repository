@@ -13,8 +13,9 @@ import { Tooltip } from '@/components/shared/Tooltip/Tooltip';
 import { analytics } from '@/shared/analytics/analytics';
 import { copyToClipboard } from '@/shared/copy';
 import { isEmbedded } from '@/shared/iframe-detector';
-import { INotebookMetadata } from '@/shared/notebook-metadata';
-import { CATEGORIES } from '@/shared/notebook-tags';
+import { IAiDemoMetadata } from '@/shared/notebook-metadata';
+// import { INDUSTRY_CATEGORY } from '@/shared/aidemos-tags';
+import { INDUSTRY_CATEGORY } from '@/shared/aidemos-tags';
 import { NotebookItem } from '@/shared/notebooks.service';
 import { getUrlParamsWithSearch } from '@/shared/selectorUrlPersist';
 
@@ -26,7 +27,7 @@ const htmlToText = (value: string): string => {
   return div.textContent || value;
 };
 
-const openNotebookInDocs = ({ links, path }: INotebookMetadata) => {
+const openNotebookInDocs = ({ links, path }: IAiDemoMetadata) => {
   if (!links.docs) {
     return;
   }
@@ -34,7 +35,7 @@ const openNotebookInDocs = ({ links, path }: INotebookMetadata) => {
   window.open(links.docs, isEmbedded ? '_parent' : '_blank');
 };
 
-const copyNotebookShareUrl = ({ title }: INotebookMetadata): void => {
+const copyNotebookShareUrl = ({ title }: IAiDemoMetadata): void => {
   const shareUrl = new URL(window.location.toString());
   shareUrl.search = getUrlParamsWithSearch(title).toString();
   void copyToClipboard(shareUrl.toString());
@@ -68,7 +69,7 @@ export const NotebookCard = ({ item, showTasks = true }: NotebookCardProps): JSX
   const [isLinkCopied, setLinkCopied] = useState(false);
   const statusButtonRef = useRef<HTMLButtonElement>(null);
   const { categories, tasks } = item.tags;
-  const descriptionTags = [...categories.filter((v) => v !== CATEGORIES.AI_TRENDS), ...tasks];
+  const descriptionTags = [...categories.filter((v) => v !== INDUSTRY_CATEGORY.HEALTHCARE), ...tasks];
   return (
     <div className={sparkClassNames.card}>
       <div className={`card-wrapper ${item.links.docs ? 'clickable' : ''}`} onClick={() => openNotebookInDocs(item)}>
@@ -81,7 +82,7 @@ export const NotebookCard = ({ item, showTasks = true }: NotebookCardProps): JSX
         </div>
         <div className="card-content">
           <h6 className={sparkClassNames.cardTitle}>
-            {item.tags.categories.includes(CATEGORIES.AI_TRENDS) && (
+            {item.tags.categories.includes(INDUSTRY_CATEGORY.HEALTHCARE) && (
               <Tag text="🚀 AI Trends" theme="daisy-tint1" variant="action"></Tag>
             )}
             <span>{htmlToText(item.title)}</span>

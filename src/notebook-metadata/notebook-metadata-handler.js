@@ -10,7 +10,7 @@ import { NotebookMetadataCollector } from './notebook-metadata-collector.js';
 import { toMarkdown } from './notebook-metadata-formatter.js';
 import { NotebookMetadataValidationError, validateNotebookMetadata } from './notebook-metadata-validator.js';
 
-/** @typedef {import('../shared/notebook-metadata.ts').INotebookMetadata} INotebookMetadata */
+/** @typedef {import('../shared/notebook-metadata.ts').IAiDemoMetadata} IAiDemoMetadata */
 
 export class NotebookMetadataHandler {
   /**

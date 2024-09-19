@@ -1,6 +1,5 @@
 import { createContext, Dispatch, SetStateAction, useState } from 'react';
 
-// import { INotebookMetadata } from './notebook-metadata';
 import { IAiDemoMetadata } from './notebook-metadata'
 import { SORT_OPTIONS, SortValues } from './notebooks.service';
 

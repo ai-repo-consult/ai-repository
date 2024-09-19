@@ -1,10 +1,10 @@
 // @ts-check
 
-/** @typedef {import('../shared/notebook-metadata.ts').INotebookMetadata} INotebookMetadata */
+/** @typedef {import('../shared/notebook-metadata.ts').IAiDemoMetadata} IAiDemoMetadata */
 
 /**
  *
- * @param {INotebookMetadata} metadata
+ * @param {IAiDemoMetadata} metadata
  * @param {boolean} hasError
  * @returns {string}
  */

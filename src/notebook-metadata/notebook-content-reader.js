@@ -4,10 +4,10 @@ import { existsSync, readFileSync } from 'fs';
 import { basename, dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 
-/** @typedef {import('../shared/notebook-metadata.ts').INotebookMetadata} INotebookMetadata */
+/** @typedef {import('../shared/notebook-metadata.ts').IAiDemoMetadata} IAiDemoMetadata */
 /**
  * @typedef {{
- *  metadata: { openvino_notebooks?: Partial<INotebookMetadata> };
+ *  metadata: { openvino_notebooks?: Partial<IAiDemoMetadata> };
  *  cells: Array<{ cell_type: 'markdown' | 'code'; source: string[]; }>
  * }} INotebookJson
  */
@@ -92,9 +92,9 @@ export class NotebookContentReader {
 
   /**
    * @protected
-   * @template {keyof INotebookMetadata} K
+   * @template {keyof IAiDemoMetadata} K
    * @param {K} key
-   * @returns {Partial<INotebookMetadata>[K] | null}
+   * @returns {Partial<IAiDemoMetadata>[K] | null}
    */
   _getMetadataFromNotebookFile(key) {
     const { metadata } = this._getNotebookJson();

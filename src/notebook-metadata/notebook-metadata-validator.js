@@ -1,9 +1,10 @@
 // @ts-check
 
-import { CATEGORIES, TASKS_VALUES } from '../shared/notebook-tags.js';
+// import { INDUSTRY_CATEGORY, TYPE_TASKS_VALUES } from '../shared/aidemos-tags.js';
+import { INDUSTRY_CATEGORY, TYPE_TASKS_VALUES } from '../shared/aidemos-tags.js';
 
 /**
- * @typedef {import('../shared/notebook-metadata.ts').INotebookMetadata} INotebookMetadata
+ * @typedef {import('../shared/notebook-metadata.ts').IAiDemoMetadata} IAiDemoMetadata
  * @typedef {(v: any) => boolean} isValidFn
  * @typedef {(v: any) => string | null} ValidatorFn
  */
@@ -31,7 +32,7 @@ const isStringArray = (/** @type {any[]} */ v) => Array.isArray(v) && v.every(is
 const Nullable = (f) => (v) => v === null || f(v);
 
 /**
- * @param {INotebookMetadata['links']} links
+ * @param {IAiDemoMetadata['links']} links
  * @returns {ReturnType<ValidatorFn>}
  */
 const linksValidator = ({ github, docs, colab, binder }) => {
@@ -52,7 +53,7 @@ const linksValidator = ({ github, docs, colab, binder }) => {
 };
 
 /**
- * @param {INotebookMetadata['tags']} tags
+ * @param {IAiDemoMetadata['tags']} tags
  * @returns {ReturnType<ValidatorFn>}
  */
 const tagsValidator = (tags) => {
@@ -88,11 +89,11 @@ const tagsValidator = (tags) => {
 };
 
 /**
- * @param {INotebookMetadata['tags']['categories']} categories
+ * @param {IAiDemoMetadata['tags']['categories']} categories
  * @returns {ReturnType<ValidatorFn>}
  */
 const validateCategoriesTags = (categories) => {
-  const validTags = Object.values(CATEGORIES);
+  const validTags = Object.values(INDUSTRY_CATEGORY);
   const invalidTags = categories.filter((tag) => !validTags.includes(tag));
   if (categories.length && !invalidTags.length) {
     return null;
@@ -105,11 +106,12 @@ const validateCategoriesTags = (categories) => {
 };
 
 /**
- * @param {INotebookMetadata['tags']['tasks']} tasks
+ * @param {IAiDemoMetadata['tags']['tasks']} tasks
  * @returns {ReturnType<ValidatorFn>}
  */
 const validateTasksTags = (tasks) => {
-  const validTags = TASKS_VALUES;
+  const validTags = TYPE_TASKS_VALUES;
+  // @ts-ignore
   const invalidTags = tasks.filter((tag) => !validTags.includes(tag));
   if (tasks.length && !invalidTags.length) {
     return null;
@@ -121,7 +123,7 @@ const validateTasksTags = (tasks) => {
   });
 };
 
-/** @type {Record<keyof INotebookMetadata, ValidatorFn>} */
+/** @type {Record<keyof IAiDemoMetadata, ValidatorFn>} */
 const NOTEBOOK_METADATA_VALIDATORS = {
   title: validate(isNotEmptyString, { key: 'title', type: 'not empty string' }),
   path: validate(isNotEmptyString, { key: 'path', type: 'not empty string' }),
@@ -137,13 +139,13 @@ export class NotebookMetadataValidationError extends Error {}
 /**
  * Validates notebook metadata object
  *
- * @param {INotebookMetadata} metadata
+ * @param {IAiDemoMetadata} metadata
  * @throws {NotebookMetadataValidationError} Error message containing all metadata invalid properties
  * @returns {void}
  */
 export function validateNotebookMetadata(metadata) {
   const errors = [];
-  const entries = /** @type {[keyof INotebookMetadata, any][]} */ (Object.entries(metadata));
+  const entries = /** @type {[keyof IAiDemoMetadata, any][]} */ (Object.entries(metadata));
   for (const [key, value] of entries) {
     const validator = NOTEBOOK_METADATA_VALIDATORS[key];
     if (!validator) {
