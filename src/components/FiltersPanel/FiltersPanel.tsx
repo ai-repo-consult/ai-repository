@@ -23,7 +23,6 @@ interface IFilterGroup<T extends string = string> {
 
 type FilterGroupKey = keyof IAiDemoMetadata['tags'];
 
-const OTHER_TAGS = await notebooksService.getOtherTags();
 
 const filterGroups: IFilterGroup<FilterGroupKey>[] = [
   {
@@ -157,16 +156,7 @@ export const FiltersPanel = (): JSX.Element => {
             onTagClick={(tag, group) => handleTagClick(tag, group!)}
           ></FilterSection>
         )}
-        {/* {group === 'categories' && !!filterTags(OTHER_TAGS).length && (
-          <FilterSection<FilterGroupKey>
-            key={`filter-section-other`}
-            group="other"
-            title="Quick Filters"
-            tags={filterTags(OTHER_TAGS)}
-            selectedTags={selectedTags['other']}
-            onTagClick={(tag, group) => handleTagClick(tag, group!)}
-          ></FilterSection>
-        )} */}
+        
       </>
     ),
   }));

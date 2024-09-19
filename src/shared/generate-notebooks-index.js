@@ -37,8 +37,8 @@ function getCategoryToNotebooksMetadataMap(notebooksMetadataMap) {
  */
 function formatToIndexMarkdown(categoryToNotebooksMetadataMap) {
   const mdContents = [
-    '# OpenVINO Notebooks\n\n',
-    '[OpenVINO™ Notebooks at GitHub Pages](https://openvinotoolkit.github.io/openvino_notebooks/)\n\n',
+    '# AI CoE Repository\n\n',
+    '[AI COE Repository - Your AI Demo Collection](https://ai-repo-consult.github.io/ai-repository/)\n\n',
   ];
 
   for (const [category, notebooksMetadataList] of Object.entries(categoryToNotebooksMetadataMap).sort()) {

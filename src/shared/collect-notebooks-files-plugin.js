@@ -6,7 +6,6 @@ import { join, resolve } from 'path';
 import { generateNotebooksMetadataFile } from '../notebook-metadata/generate-notebooks-map.js';
 import { createBuildChecksumFile } from './build-checksum.js';
 import { AIDEMOS_METADATA_FILE_NAME, NOTEBOOKS_STATUS_FILE_NAME } from './constants.js';
-import { fetchNotebooksStatusFile } from './fetch-notebooks-status.js';
 
 /**
  *
@@ -26,7 +25,7 @@ export const collectNotebooksFilesPlugin = () => {
     async closeBundle() {
       if (config.command === 'build') {
         await generateNotebooksMetadataFile(distPath);
-        await fetchNotebooksStatusFile(distPath);
+        // await fetchNotebooksStatusFile(distPath);
         await createBuildChecksumFile(distPath);
       }
     },
@@ -46,13 +45,6 @@ export const collectNotebooksFilesPlugin = () => {
         );
       } else {
         console.info(`"${NOTEBOOKS_STATUS_FILE_NAME}" file is not found in "${distPath}" dist directory.\nFetching...`);
-        try {
-          await fetchNotebooksStatusFile(distPath);
-        } catch (error) {
-          console.warn(`Unable to fetch "${NOTEBOOKS_STATUS_FILE_NAME}".`);
-          console.warn(error);
-          // TODO Consider generating mock file
-        }
       }
 
       devServer.middlewares.use(...getFileMiddleware(AIDEMOS_METADATA_FILE_NAME, config.base, distPath));

@@ -1,18 +1,6 @@
 // @ts-check
 
 import { execSync } from 'child_process';
-import { readFileSync } from 'fs';
-import { dirname, join, relative } from 'path';
-import { fileURLToPath } from 'url';
-
-/**
- * @returns {string[]}
- */
-function getDocsIgnoredNotebooks() {
-  const CURRENT_DIR_PATH = dirname(fileURLToPath(import.meta.url));
-  const ignoreConvertFilePath = join(CURRENT_DIR_PATH, '..', '..', '..', '.ci', 'ignore_convert_full.txt');
-  return readFileSync(ignoreConvertFilePath, { encoding: 'utf8' }).split('\n');
-}
 
 /**
  * @returns {string}
@@ -47,10 +35,10 @@ function getAllDocsNotebooksForTag(tag) {
 function getLatestDocsNotebooksWithTag() {
   const latestOVReleaseTag = getLatestOvReleaseTag();
   const allDocsNotebooks = getAllDocsNotebooksForTag(latestOVReleaseTag);
-  const docsIgnoredNotebooks = getDocsIgnoredNotebooks();
-  const latestDocsNotebooks = allDocsNotebooks
-    .filter((v) => !docsIgnoredNotebooks.includes(v))
-    .map((v) => relative('notebooks', v));
+  // const docsIgnoredNotebooks = getDocsIgnoredNotebooks();
+  const latestDocsNotebooks = allDocsNotebooks;
+    // .filter((v) => !docsIgnoredNotebooks.includes(v))
+    // .map((v) => relative('notebooks', v));
   return { latestDocsNotebooks, latestOVReleaseTag };
 }
 

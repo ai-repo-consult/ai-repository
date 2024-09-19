@@ -14,7 +14,7 @@ export default defineConfig(({ mode }) => {
 
   return {
     plugins: [react(), svgr(), collectNotebooksFilesPlugin()],
-    base: '/openvino_notebooks/',
+    base: '/ai-repository/',
     resolve: {
       alias: {
         '@': resolve(__dirname, './src'),
@@ -24,7 +24,7 @@ export default defineConfig(({ mode }) => {
       },
     },
     build: {
-      outDir: join('dist', 'openvino_notebooks'),
+      outDir: join('dist', 'ai-repository'),
       modulePreload: {
         polyfill: false,
       },
