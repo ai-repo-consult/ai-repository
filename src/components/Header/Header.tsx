@@ -7,11 +7,11 @@ export const Header = (): JSX.Element => {
     <header role="banner" className="spark-header spark-header-size-s">
       <div className="spark-header-brand">
         <div className="spark-header-brand-logoimg">
-          <img alt="OpenVINO" src={logo}></img>
+          <img alt="AI CoE Sales" src={logo}></img>
         </div>
       </div>
       <nav className="spark-header-region-start">
-        <div className="spark-header-project-name">Notebooks</div>
+        <div className="spark-header-project-name">Repository</div>
       </nav>
     </header>
   );

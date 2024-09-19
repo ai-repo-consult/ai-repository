@@ -1,12 +1,12 @@
 [
   {
-    "title": "3D-pose-estimation-webcam",
+    "title": "3D pose estimation webcam",
     "path": "path/to/3D-pose-estimation-webcam",
     "imageUrl": null,
     "createdDate": "2024-01-01",
     "modifiedDate": "2024-09-01",
     "links": {
-      "github": "https://github.com/your-repo/3D-pose-estimation-webcam",
+      "github": "https://github.com/openvinotoolkit/openvino_notebooks/blob/latest/notebooks/3D-pose-estimation-webcam/3D-pose-estimation.ipynb",
       "docs": null,
       "colab": null,
       "binder": null
@@ -39,13 +39,13 @@
     }
   },
   {
-    "title": "3D-segmentation-point-clouds",
+    "title": "3D segmentation point clouds",
     "path": "path/to/3D-segmentation-point-clouds",
     "imageUrl": null,
     "createdDate": "2024-01-01",
     "modifiedDate": "2024-09-01",
     "links": {
-      "github": "https://github.com/your-repo/3D-segmentation-point-clouds",
+      "github": "https://github.com/openvinotoolkit/openvino_notebooks/blob/latest/notebooks/3D-segmentation-point-clouds/3D-segmentation-point-clouds.ipynb",
       "docs": null,
       "colab": null,
       "binder": null
@@ -78,13 +78,13 @@
     }
   },
   {
-    "title": "amused-lightweight-text-to-image",
+    "title": "amused lightweight text to image",
     "path": "path/to/amused-lightweight-text-to-image",
     "imageUrl": null,
     "createdDate": "2024-01-01",
     "modifiedDate": "2024-09-01",
     "links": {
-      "github": "https://github.com/your-repo/amused-lightweight-text-to-image",
+      "github": "https://github.com/openvinotoolkit/openvino_notebooks/blob/latest/notebooks/amused-lightweight-text-to-image/amused-lightweight-text-to-image.ipynb",
       "docs": null,
       "colab": null,
       "binder": null
@@ -357,7 +357,7 @@
     "createdDate": "2024-01-01",
     "modifiedDate": "2024-09-01",
     "links": {
-      "github": "https://github.com/your-repo/controlnet-stable-diffusion",
+      "github": "https://github.com/openvinotoolkit/openvino_notebooks/blob/latest/notebooks/stable-fast-3d/stable-fast-3d.ipynb",
       "docs": null,
       "colab": null,
       "binder": null
