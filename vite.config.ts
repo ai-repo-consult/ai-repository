@@ -14,7 +14,7 @@ export default defineConfig(({ mode }) => {
 
   return {
     plugins: [react(), svgr(), collectNotebooksFilesPlugin()],
-    base: '/ai-repository/',
+    base: './',
     resolve: {
       alias: {
         '@': resolve(__dirname, './src'),
