@@ -4,10 +4,10 @@ import fs from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const NOTEBOOKS_DIR = join(dirname(fileURLToPath(import.meta.url)), '..', '..', '..', 'notebooks');
+const NOTEBOOKS_DIR = join(dirname(fileURLToPath(import.meta.url)), '..', '..', 'json');
 const INDEX_FILE_NAME = 'README.md';
 
-console.log("the file generate-Notebooks-Index")
+console.log("the file Copies the aidemos-metadata-map.json file to the json folder and generates the README.md file in the json folder with the list of notebooks in the repository. The README.md file is generated based on the categories of the notebooks.");
 
 /** @typedef {import('./notebook-metadata.ts').IAiDemoMetadata} IAiDemoMetadata */
 
