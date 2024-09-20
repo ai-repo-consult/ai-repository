@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 
 import { isEmbedded } from './iframe-detector';
-// import { CATEGORIES, LIBRARIES_TECHNOLOGY_VALUES, TYPE_TASKS_VALUES } from './notebook-tags';
 import { INDUSTRY_CATEGORY, LIBRARIES_TECHNOLOGY_VALUES, TYPE_TASKS_VALUES } from './aidemos-tags';
 import { notebooksService } from './notebooks.service';
 import { defaultSelectedTags, INotebooksSelector } from './notebooks-context';

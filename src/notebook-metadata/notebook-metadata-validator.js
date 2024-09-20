@@ -1,6 +1,5 @@
 // @ts-check
 
-// import { INDUSTRY_CATEGORY, TYPE_TASKS_VALUES } from '../shared/aidemos-tags.js';
 import { INDUSTRY_CATEGORY, TYPE_TASKS_VALUES } from '../shared/aidemos-tags.js';
 
 /**

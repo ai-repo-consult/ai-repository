@@ -14,7 +14,6 @@ import { analytics } from '@/shared/analytics/analytics';
 import { copyToClipboard } from '@/shared/copy';
 import { isEmbedded } from '@/shared/iframe-detector';
 import { IAiDemoMetadata } from '@/shared/notebook-metadata';
-// import { INDUSTRY_CATEGORY } from '@/shared/aidemos-tags';
 import { INDUSTRY_CATEGORY } from '@/shared/aidemos-tags';
 import { NotebookItem } from '@/shared/notebooks.service';
 import { getUrlParamsWithSearch } from '@/shared/selectorUrlPersist';

@@ -20,8 +20,6 @@ interface INotebooksFilters {
 }
 type NotebooksMap = Record<string, IAiDemoMetadata & { status?: INotebookStatus['status'] }>;
 
-// type NotebooksMap = Record<string, IAiDemoMetadata>;
-
 export type NotebookItem = NotebooksMap[string];
 
 class NotebooksService {
