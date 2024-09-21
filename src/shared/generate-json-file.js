@@ -9,7 +9,7 @@ export async function generateJsonFile(destinationPath) {
   print('Generating JSON file...');
   try {
     // Ruta al archivo que quieres copiar (cambia la ruta si es necesario)
-    const sourcePath = join(process.cwd(), 'src', 'shared', 'aidemos-metadata-map.json');
+    const sourcePath = join(process.cwd(), 'json', 'aidemos-metadata-map.json');
 
     // Asegúrate de que el archivo exista en la ubicación de origen
     try {
