@@ -1,0 +1,39 @@
+# CHANGELOG
+
+## [1.0.0] - 2024-09-17
+
+### Modifications
+- `src/components/ContentSection/NotebooksList/NotebookCard/NotebookCard.tsx`: Updated logic to handle the new metadata format.
+- `src/shared/collect-notebooks-files-plugin.js`: Removed functionality related to `NOTEBOOKS_STATUS_FILE_NAME` and adjusted to work with `aidemos-metadata-map.json`.
+- `src/shared/constants.js`: Added and updated constants related to the new data structure.
+- `src/shared/notebook-metadata.ts`: Replaced `INotebookMetadata` with `IAiDemoMetadata`.
+- `src/shared/notebooks.service.ts`: Adapted to use the new metadata and removed unnecessary dependencies.
+- `src/shared/selectorUrlPersist.ts`: Minor adjustments to handle changes in filter categories.
+- `vite.config.ts`: Modified output paths and build configurations.
+
+### Deletions
+- `src/notebook-metadata/docs-notebooks.js`
+- `src/notebook-metadata/generate-notebooks-map.js`
+- `src/notebook-metadata/notebook-content-reader.js`
+- `src/notebook-metadata/notebook-metadata-collector.js`
+- `src/notebook-metadata/notebook-metadata-handler.js`
+- `src/notebook-metadata/skipped-notebooks.txt`
+- `src/shared/notebook-tags.js`
+
+### Folder Removals
+- Removed the following folders:
+  - `.binder`
+  - `.ci`
+  - `.docker`
+  - `.github`
+  - `licensing`
+  - `notebooks`
+  - `supplementary_materials`
+  - `utils`
+
+### Structural Changes
+- The `selector` folder was renamed to `ai-repository`.
+
+### Notes
+- Functionality for managing status (`NOTEBOOKS_STATUS_FILE_NAME`) was removed as it is no longer required in this implementation.
+- The structure was adjusted to use the new data from `aidemos-metadata-map.json`.
